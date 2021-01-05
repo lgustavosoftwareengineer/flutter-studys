@@ -6,6 +6,8 @@ abstract class Person {
     this.fn = fn;
     this.ln = ln;
   }
+
+  void breath([String name]);
 }
 
 class Programmer extends Person {
@@ -32,6 +34,11 @@ class Programmer extends Person {
       return "It's ok";
     }
   }
+
+  @override
+  void breath([String name]) {
+    // TODO: implement breath
+  }
 }
 
 class Hero extends Person with Swimmer {
@@ -39,6 +46,11 @@ class Hero extends Person with Swimmer {
   int heroForce;
 
   Hero({String fn, String ln, this.heroName, this.heroForce}) : super(fn, ln);
+
+  @override
+  void breath([String name]) {
+    // TODO: implement breath
+  }
 }
 
 /*
