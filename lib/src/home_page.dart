@@ -27,15 +27,19 @@ class HomePageState extends State<HomePage> {
           )
         ],
       ),
-      body: Center(
-        child: CustomSwitch(
-        value: isTrue,
-        onChanged: (value) {
-          setState(() {
-            isTrue = value;
-          });
-        },
-      )),
+      body: Container(
+        width: double.infinity,
+        height: double.infinity,
+        padding: const EdgeInsets.all(10),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            Block(color: Colors.yellow),
+            Block(color: Colors.green),
+            Block(color: Colors.deepPurple)
+          ]),
+      ),
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.add),
         onPressed: () {
@@ -44,6 +48,21 @@ class HomePageState extends State<HomePage> {
           });
         },
       ),
+    );
+  }
+}
+
+
+class Block extends StatelessWidget {
+  final Color color;
+  const Block({Key key, this.color}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: 100,
+      height: 100,
+      color: color,
     );
   }
 }
