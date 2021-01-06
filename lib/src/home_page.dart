@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hello_world/src/app_controller.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -16,34 +17,12 @@ class HomePageState extends State<HomePage> {
       appBar: AppBar(
         title: Text('Home Page'),
       ),
-      body: Container(
-        height: 200,
-        width: 200,
-        color: Colors.black,
-        child: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Align(
-                alignment: Alignment.center,
-                child: Container(
-                height: 80,
-                width: 80,
-                color: Colors.green,
-                ),
-              ), 
-              Align(
-                alignment: Alignment.center,
-                child: Container(
-                height: 80,
-                width: 80,
-                color: Colors.red,
-                ),
-              )
-            ],
-          ),
-        ),
+      body: Center(
+        child: Switch(
+            value: AppController.instance.isDarkTheme,
+            onChanged: (value) {
+              AppController.instance.changeTheme();
+            }),
       ),
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.add),
