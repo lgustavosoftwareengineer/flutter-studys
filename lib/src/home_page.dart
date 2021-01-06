@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
@@ -10,54 +8,48 @@ class HomePage extends StatefulWidget {
 }
 
 class HomePageState extends State<HomePage> {
-  int randomValue = 0;
-
-  final List<dynamic> emojis = [
-    '🥺',
-    '👏',
-    '🤩',
-    '🐷',
-    '😍',
-    '😕',
-    '🙏',
-    '🗣️',
-    '❤️',
-    '🚨',
-    '🤓'
-  ];
+  int count = 0;
 
   @override
   Widget build(BuildContext context) {
-    
-    
-    generateARandomValue() {
-      int min = 0;
-      int max = 11;
-      Random rnd = new Random();
-      int r = min + rnd.nextInt(max - min);
-      return r;
-    }
-
     return Scaffold(
       appBar: AppBar(
         title: Text('Home Page'),
       ),
-      body: Center(
-        child: GestureDetector(
-          child: Text('${emojis[randomValue]}',
-              style: TextStyle(fontSize: 100)),
-          onTap: () {
-            setState(() {
-              randomValue = generateARandomValue();
-            });
-          },
+      body: Container(
+        height: 200,
+        width: 200,
+        color: Colors.black,
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Align(
+                alignment: Alignment.center,
+                child: Container(
+                height: 80,
+                width: 80,
+                color: Colors.green,
+                ),
+              ), 
+              Align(
+                alignment: Alignment.center,
+                child: Container(
+                height: 80,
+                width: 80,
+                color: Colors.red,
+                ),
+              )
+            ],
+          ),
         ),
       ),
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.add),
         onPressed: () {
           setState(() {
-            randomValue = generateARandomValue();
+            count++;
           });
         },
       ),
