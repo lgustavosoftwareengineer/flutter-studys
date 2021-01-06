@@ -24,13 +24,17 @@ class HomePage extends StatelessWidget {
       appBar: AppBar(
         title: Text('Flutter Playground'),
       ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+      body: Align(
+        // Direciona o elemento no crossAxis
+        alignment: Alignment.center,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
-            Text(
-              'Text 1',
-              style: TextStyle(fontSize: 25),
+            Expanded(
+              child: Text(
+                'Text 1',
+                style: TextStyle(fontSize: 25),
+              ),
             ),
             Text(
               'Text 2',
@@ -69,8 +73,8 @@ showAlertDialog(BuildContext context) {
 
   // set up the AlertDialog
   AlertDialog alert = AlertDialog(
-    title: Text("My title"),
-    content: Text("This is my message."),
+    title: Text("Hello"),
+    content: Text("Hello i'm a Dialog."),
     actions: [
       okButton,
     ],
