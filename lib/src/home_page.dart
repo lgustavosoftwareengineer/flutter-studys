@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
@@ -8,25 +10,45 @@ class HomePage extends StatefulWidget {
 }
 
 class HomePageState extends State<HomePage> {
-  int count = 0;
+  int randomValue = 0;
+
+  final List<dynamic> emojis = [
+    '🥺',
+    '👏',
+    '🤩',
+    '🐷',
+    '😍',
+    '😕',
+    '🙏',
+    '🗣️',
+    '❤️',
+    '🚨',
+    '🤓'
+  ];
 
   @override
   Widget build(BuildContext context) {
-    /*
-    Eu posso utilizar o Scaffold ou o Material.
-    A diferença é que com o Scaffold eu obtenho uma estrutura de aplicativo basicamente completa.
-    No entando o Material é bastante útil para quando eu pretendo trabalhar com tema.
-    */
+    
+    
+    generateARandomValue() {
+      int min = 0;
+      int max = 11;
+      Random rnd = new Random();
+      int r = min + rnd.nextInt(max - min);
+      return r;
+    }
+
     return Scaffold(
       appBar: AppBar(
         title: Text('Home Page'),
       ),
       body: Center(
         child: GestureDetector(
-          child: Text('Contador $count', style: TextStyle(fontSize: 20)),
+          child: Text('${emojis[randomValue]}',
+              style: TextStyle(fontSize: 100)),
           onTap: () {
             setState(() {
-              count++;
+              randomValue = generateARandomValue();
             });
           },
         ),
@@ -35,7 +57,7 @@ class HomePageState extends State<HomePage> {
         child: Icon(Icons.add),
         onPressed: () {
           setState(() {
-            count++;
+            randomValue = generateARandomValue();
           });
         },
       ),
