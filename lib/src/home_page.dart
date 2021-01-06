@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hello_world/src/app_controller.dart';
+import 'package:hello_world/src/widgets/custom_switch.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -10,20 +11,31 @@ class HomePage extends StatefulWidget {
 
 class HomePageState extends State<HomePage> {
   int count = 0;
+  bool isTrue = false;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text('Home Page'),
-      ),
-      body: Center(
-        child: Switch(
+        actions: [
+          CustomSwitch(
             value: AppController.instance.isDarkTheme,
             onChanged: (value) {
               AppController.instance.changeTheme();
-            }),
+            },
+          )
+        ],
       ),
+      body: Center(
+        child: CustomSwitch(
+        value: isTrue,
+        onChanged: (value) {
+          setState(() {
+            isTrue = value;
+          });
+        },
+      )),
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.add),
         onPressed: () {
