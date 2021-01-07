@@ -24,25 +24,33 @@ class HomePage extends StatelessWidget {
       appBar: AppBar(
         title: Text('Flutter Playground'),
       ),
-      body: Align(
-        // Direciona o elemento no crossAxis
-        alignment: Alignment.center,
+      body: Container(
+        width: double.infinity,
+        height: double.infinity,
         child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Expanded(
+            Container(
+              padding: EdgeInsets.all(20),
               child: Text(
-                'Text 1',
+                  'Text 1',
+                  style: TextStyle(fontSize: 25),
+                ),
+            ),
+            Container(
+              padding: EdgeInsets.only(bottom: 100, left: 100),
+              child: Text(
+                'Text 2',
                 style: TextStyle(fontSize: 25),
               ),
             ),
-            Text(
-              'Text 2',
-              style: TextStyle(fontSize: 25),
-            ),
-            Text(
-              'Text 3',
-              style: TextStyle(fontSize: 25),
+            Transform.scale(
+              scale: 2.0,
+              child: Text(
+                'Text 3',
+                style: TextStyle(fontSize: 25),
+              ),
             ),
           ],
         ),
