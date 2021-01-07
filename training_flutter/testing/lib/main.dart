@@ -31,30 +31,12 @@ class HomePage extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            ConstrainedBox(
-              constraints: BoxConstraints(minHeight: 200), 
-              child: Container(
-                color: Colors.blue, 
-                child: MyText(data: 'Child 1')
-              )
-            ),
-            ConstrainedBox(
-              constraints: BoxConstraints(minHeight: 200), 
-              child: FittedBox(
-                fit: BoxFit.fill,
-                child: MyText(data: 'Child 2')
-              )
-            ),
-            RotatedBox(quarterTurns: 1, child: MyText(data: 'Child 3')),
-            SizedBox(
-              height: 200,
-              width: 200,
-              child: Container(
-                width: double.maxFinite,
-                height: double.maxFinite,
-                color: Colors.amber,
-                child: Center(child: MyText(data: 'Child 4')))
-            )
+            MyText(data: 'Child 1'),
+            Divider(thickness: 2,),
+            MyText(data: 'Child 2'),
+            Divider(thickness: 2,),
+            MyText(data: 'Child 3'),
+            Divider(thickness: 2,),
           ],
         ),
       ),
