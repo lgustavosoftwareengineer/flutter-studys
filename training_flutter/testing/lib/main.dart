@@ -27,31 +27,34 @@ class HomePage extends StatelessWidget {
       body: Container(
         width: double.infinity,
         height: double.infinity,
-        child: Row(
+        child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Container(
-              padding: EdgeInsets.all(20),
-              child: Text(
-                  'Text 1',
-                  style: TextStyle(fontSize: 25),
-                ),
+            ConstrainedBox(
+              constraints: BoxConstraints(minHeight: 200), 
+              child: Container(
+                color: Colors.blue, 
+                child: MyText(data: 'Child 1')
+              )
             ),
-            Container(
-              padding: EdgeInsets.only(bottom: 100, left: 100),
-              child: Text(
-                'Text 2',
-                style: TextStyle(fontSize: 25),
-              ),
+            ConstrainedBox(
+              constraints: BoxConstraints(minHeight: 200), 
+              child: FittedBox(
+                fit: BoxFit.fill,
+                child: MyText(data: 'Child 2')
+              )
             ),
-            Transform.scale(
-              scale: 2.0,
-              child: Text(
-                'Text 3',
-                style: TextStyle(fontSize: 25),
-              ),
-            ),
+            RotatedBox(quarterTurns: 1, child: MyText(data: 'Child 3')),
+            SizedBox(
+              height: 200,
+              width: 200,
+              child: Container(
+                width: double.maxFinite,
+                height: double.maxFinite,
+                color: Colors.amber,
+                child: Center(child: MyText(data: 'Child 4')))
+            )
           ],
         ),
       ),
@@ -95,4 +98,17 @@ showAlertDialog(BuildContext context) {
       return alert;
     },
   );
+}
+
+class MyText extends StatelessWidget {
+  final String data;
+  final Color color;
+  final Color bg;
+
+  const MyText({Key key, this.data, this.color, this.bg}) : super(key: key);
+  
+  @override
+  Widget build(BuildContext context) {
+    return Text(data, style: TextStyle(fontSize: 25, color: color, backgroundColor: bg),);
+  }
 }
