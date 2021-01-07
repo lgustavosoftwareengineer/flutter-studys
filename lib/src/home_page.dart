@@ -31,13 +31,34 @@ class HomePageState extends State<HomePage> {
         width: double.infinity,
         height: double.infinity,
         padding: const EdgeInsets.all(10),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          crossAxisAlignment: CrossAxisAlignment.stretch,
+        child: ListView(
+          padding: EdgeInsets.all(20),
+          scrollDirection: Axis.vertical,
           children: [
-            Block(color: Colors.yellow),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Block(color: Colors.yellow),
+            ),
             Block(color: Colors.green),
-            Block(color: Colors.deepPurple)
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Block(color: Colors.deepPurple),
+            ),
+            Block(color: Colors.blue),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Block(color: Colors.red),
+            ),
+            Block(color: Colors.cyan),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Block(color: Colors.grey),
+            ),
+            Block(color: Colors.teal),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Block(color: Colors.amber),
+            ),
           ]),
       ),
       floatingActionButton: FloatingActionButton(
