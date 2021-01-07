@@ -27,17 +27,29 @@ class HomePage extends StatelessWidget {
       body: Container(
         width: double.infinity,
         height: double.infinity,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            MyText(data: 'Child 1'),
-            Divider(thickness: 2,),
-            MyText(data: 'Child 2'),
-            Divider(thickness: 2,),
-            MyText(data: 'Child 3'),
-            Divider(thickness: 2,),
-          ],
+        child: Card(
+          margin: EdgeInsets.symmetric(horizontal: 10, vertical: 200),
+          // color:  Colors.black12,
+          elevation: 10,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.only(
+              bottomLeft: Radius.circular(10), 
+              bottomRight: Radius.circular(10)
+            )
+          ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              MyText(data: 'Child 1'),
+              Divider(thickness: 2,),
+              MyText(data: 'Child 2'),
+              Divider(thickness: 2,),
+              MyText(data: 'Child 3'),
+              Divider(thickness: 2,),
+            ],
+          ),
         ),
       ),
       floatingActionButton: FloatingActionButton(
