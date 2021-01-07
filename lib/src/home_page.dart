@@ -31,8 +31,8 @@ class HomePageState extends State<HomePage> {
         width: double.infinity,
         height: double.infinity,
         padding: const EdgeInsets.all(10),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             Block(color: Colors.yellow),
