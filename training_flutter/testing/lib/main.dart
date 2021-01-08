@@ -24,6 +24,23 @@ class HomePage extends StatelessWidget {
       appBar: AppBar(
         title: Text('Flutter Playground'),
       ),
+      drawer: Drawer(
+        child: Column(
+          children: [
+            Container(
+              margin: EdgeInsets.only(bottom: 10),
+              height: 110,
+              width: double.infinity,
+              color: Colors.red,
+              child: DrawerHeader(
+                child: Text('Header', style: TextStyle(color: Colors.white),)
+              ),
+            ),
+            Text('Item 1'),
+            Text('Item 2'),
+          ],
+        ),
+      ),
       body: Container(
         width: double.infinity,
         height: double.infinity,
