@@ -1,21 +1,58 @@
 import 'package:flutter/material.dart';
 
-import 'widgets/my_text_widget.dart';
+class SettingsPage extends StatefulWidget {
+  final int selectedPage;
+  const SettingsPage({Key key, this.selectedPage}) : super(key: key);
 
-class SettingsPage extends StatelessWidget {
+  @override
+  _SettingsPageState createState() => _SettingsPageState();
+}
+
+class _SettingsPageState extends State<SettingsPage>
+    with SingleTickerProviderStateMixin {
+
+  TabController _tabController;
+
+  final List<Tab> _tabs = <Tab>[
+    Tab(icon: Icon(Icons.announcement)),
+    Tab(icon: Icon(Icons.cake)),
+    Tab(icon: Icon(Icons.cloud)),
+  ];
+
+  final List<Tab> _views = <Tab>[
+    Tab(text: "Announcement", icon: Icon(Icons.announcement)),
+    Tab(text: "Cake", icon: Icon(Icons.cake)),
+    Tab(text: "Cloud", icon: Icon(Icons.cloud)),
+  ];
+
+  @override
+  void initState() {
+    super.initState();
+    _tabController = new TabController(vsync: this, length: _tabs.length);
+  }
+
+  @override
+  void dispose() {
+    _tabController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text('Configurações'),
         leading: Builder(
-          builder: (context) => 
-          IconButton(
+          builder: (context) => IconButton(
             icon: Icon(Icons.settings),
             onPressed: () {
               Scaffold.of(context).openDrawer();
             },
           ),
+        ),
+        bottom: TabBar(
+          controller: _tabController,
+          tabs: _tabs,
         ),
       ),
       drawer: Drawer(
@@ -32,77 +69,48 @@ class SettingsPage extends StatelessWidget {
                 style: TextStyle(color: Colors.white),
               )),
             ),
-           FlatButton(
+            FlatButton(
               onPressed: () {
                 Navigator.pushNamed(context, '/');
               },
-              child: Row(
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.only(right: 20),
-                    child: Icon(Icons.person),
-                  ),
-                  Text('Página inicial'),
-                ]   
+              child: Row(children: [
+                Padding(
+                  padding: const EdgeInsets.only(right: 20),
+                  child: Icon(Icons.person),
                 ),
+                Text('Página inicial'),
+              ]),
               minWidth: double.infinity,
             ),
             FlatButton(
               onPressed: () {
                 Navigator.pushNamed(context, '/user');
               },
-              child: Row(
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.only(right: 20),
-                    child: Icon(Icons.person),
-                  ),
-                  Text('Página do usuário'),
-                ]   
+              child: Row(children: [
+                Padding(
+                  padding: const EdgeInsets.only(right: 20),
+                  child: Icon(Icons.person),
                 ),
+                Text('Página do usuário'),
+              ]),
               minWidth: double.infinity,
             ),
-            
           ],
         ),
       ),
-      body: Container(
-        width: double.infinity,
-        height: double.infinity,
-        child: Card(
-          margin: EdgeInsets.symmetric(horizontal: 10, vertical: 200),
-          // color:  Colors.black12,
-          elevation: 10,
-          shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.only(
-                  bottomLeft: Radius.circular(10),
-                  bottomRight: Radius.circular(10))),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisAlignment: MainAxisAlignment.center,
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              MyText(data: 'Child 1'),
-              Divider(
-                thickness: 2,
-              ),
-              MyText(data: 'Child 2'),
-              Divider(
-                thickness: 2,
-              ),
-              MyText(data: 'Child 3'),
-              Divider(
-                thickness: 2,
-              ),
-            ],
-          ),
-        ),
+      body: TabBarView(
+        controller: _tabController,
+        children: _views.map((Tab tab) {
+          return new Center(child: new Text(tab.text));
+        }).toList(),
       ),
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.add),
         onPressed: () {
-          showAlertDialog(context);
+          var index = _tabController.index;
+          return _tabController.animateTo((index + 1 == _views.length ? 0 : index + 1));
         },
+        //sshowAlertDialog(context);
       ),
     );
   }
