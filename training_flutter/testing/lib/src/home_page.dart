@@ -1,7 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:testing/src/widgets/my_text_widget.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
+  @override
+  _HomePageState createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  var _currentPage = 0;
+
+  var _pages = [
+    Text("Page 1 - Announcements"),
+    Text("Page 2 - Birthdays"),
+    Text("Page 3 - Data"),
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -26,66 +39,46 @@ class HomePage extends StatelessWidget {
               onPressed: () {
                 Navigator.pushNamed(context, '/user');
               },
-              child: Row(
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.only(right: 20),
-                    child: Icon(Icons.person),
-                  ),
-                  Text('Página do usuário'),
-                ]   
+              child: Row(children: [
+                Padding(
+                  padding: const EdgeInsets.only(right: 20),
+                  child: Icon(Icons.person),
                 ),
+                Text('Página do usuário'),
+              ]),
               minWidth: double.infinity,
             ),
             FlatButton(
               onPressed: () {
                 Navigator.pushNamed(context, '/settings');
               },
-              child: Row(
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.only(right: 20),
-                    child: Icon(Icons.settings),
-                  ),
-                  Text('Configurações'),
-                ]   
+              child: Row(children: [
+                Padding(
+                  padding: const EdgeInsets.only(right: 20),
+                  child: Icon(Icons.settings),
                 ),
+                Text('Configurações'),
+              ]),
               minWidth: double.infinity,
             )
           ],
         ),
       ),
-      body: Container(
-        width: double.infinity,
-        height: double.infinity,
-        child: Card(
-          margin: EdgeInsets.symmetric(horizontal: 10, vertical: 200),
-          // color:  Colors.black12,
-          elevation: 10,
-          shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.only(
-                  bottomLeft: Radius.circular(10),
-                  bottomRight: Radius.circular(10))),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisAlignment: MainAxisAlignment.center,
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              MyText(data: 'Child 1'),
-              Divider(
-                thickness: 2,
-              ),
-              MyText(data: 'Child 2'),
-              Divider(
-                thickness: 2,
-              ),
-              MyText(data: 'Child 3'),
-              Divider(
-                thickness: 2,
-              ),
-            ],
-          ),
-        ),
+      body: Center(child: _pages.elementAt(_currentPage)),
+      bottomNavigationBar: BottomNavigationBar(
+        items: [
+          BottomNavigationBarItem(
+              icon: Icon(Icons.announcement), label: 'Announcements'),
+          BottomNavigationBarItem(icon: Icon(Icons.cake), label: 'Birthdays'),
+          BottomNavigationBarItem(icon: Icon(Icons.cloud), label: 'Data'),
+        ],
+        currentIndex: _currentPage,
+        fixedColor: Colors.red,
+        onTap: (int inIndex) {
+          setState(() {
+            _currentPage = inIndex;
+          });
+        },
       ),
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.add),
